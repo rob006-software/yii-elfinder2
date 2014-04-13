@@ -1,127 +1,87 @@
 <?php
 
-class ServerFileInput extends CInputWidget
-{
-    public $settings = array();
-    public $connectorRoute = false;
-    private $assetsDir;
+/**
+ * File input field with elFinder widget
+ *
+ * @author Robert Korulczyk <robert@korulczyk.pl>
+ * @link http://rob006.net/
+ * @author Bogdan Savluk <Savluk.Bogdan@gmail.com>
+ * @license http://opensource.org/licenses/BSD-3-Clause
+ */
+class ServerFileInput extends CInputWidget {
 
-    public function init()
-    {
-        $dir = dirname(__FILE__) . '/assets';
-        $this->assetsDir = Yii::app()->assetManager->publish($dir);
-        $cs = Yii::app()->getClientScript();
+	/**
+	 * @var string
+	 */
+	public $popupConnectorRoute = false;
 
-        if(Yii::app()->getRequest()->enableCsrfValidation){
-            $csrfTokenName = Yii::app()->request->csrfTokenName;
-            $csrfToken = Yii::app()->request->csrfToken;
-            Yii::app()->clientScript->registerMetaTag($csrfToken, 'csrf-token');
-            Yii::app()->clientScript->registerMetaTag($csrfTokenName, 'csrf-param');
-        }
+	/**
+	 * @var string
+	 */
+	public $popupTitle = 'Files';
 
-        // jQuery and jQuery UI
-        $cs->registerCssFile($cs->getCoreScriptUrl() . '/jui/css/base/jquery-ui.css');
-//        $cs->registerCssFile($this->assetsDir . '/smoothness/jquery-ui-1.8.21.custom.css');
-//        $cs->registerCssFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/smoothness/jquery-ui.css');
-        $cs->registerCoreScript('jquery');
-        $cs->registerCoreScript('jquery.ui');
-//        $cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js');
+	/**
+	 * Custom "Browse" button html code
+	 * Button id must be according with the pattern [INPUT_FIELD_ID]browse, for exaple:
+	 * CHtml::button('Browse', array('id' => TbHtml::getIdByName(TbHtml::activeName($model, 'header_box_image')) . 'browse'));
+	 * @var string
+	 */
+	public $customButton = '';
 
-        // elFinder CSS
-        $cs->registerCssFile($this->assetsDir . '/css/elfinder.css');
+	public function run() {
+		Yii::import('ext.elFinder.ElFinderHelper');
+		ElFinderHelper::registerAssets();
 
-        // elFinder JS
-        if (YII_DEBUG) {
-            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.full.js');
-        } else {
-            $cs->registerScriptFile($this->assetsDir . '/js/elfinder.min.js');
-        }
-        // elFinder translation
-        $langs = array('bg', 'jp', 'sk', 'cs', 'ko', 'th', 'de', 'lv', 'tr', 'el', 'nl', 'uk',
-            'es', 'no', 'vi', 'fr', 'pl', 'zh_CN', 'hr', 'pt_BR', 'zh_TW', 'hu', 'ro', 'it', 'ru');
-        $lang = Yii::app()->language;
-        if (!in_array($lang, $langs)) {
-            if (strpos($lang, '_')) {
-                $lang = substr($lang, 0, strpos($lang, '_'));
-                if (!in_array($lang, $langs)) $lang = false;
-            } else {
-                $lang = false;
-            }
-        }
-        if ($lang !== false)
-            $cs->registerScriptFile($this->assetsDir . '/js/i18n/elfinder.' . $lang . '.js');
+		list($name, $id) = $this->resolveNameID();
 
-        // set required options
-        if (empty($this->connectorRoute))
-            throw new CException('$connectorRoute must be set!');
-        $this->settings['url'] = Yii::app()->createUrl($this->connectorRoute);
-        $this->settings['lang'] = Yii::app()->language;
-    }
+		if (isset($this->htmlOptions['id']))
+			$id = $this->htmlOptions['id'];
+		else
+			$this->htmlOptions['id'] = $id;
+		if (isset($this->htmlOptions['name']))
+			$name = $this->htmlOptions['name'];
+		else
+			$this->htmlOptions['name'] = $name;
 
-    public function run()
-    {
-        list($name, $id) = $this->resolveNameID();
-        if (isset($this->htmlOptions['id']))
-            $id = $this->htmlOptions['id'];
-        else
-            $this->htmlOptions['id'] = $id;
-        if (isset($this->htmlOptions['name']))
-            $name = $this->htmlOptions['name'];
-        else
-            $this->htmlOptions['name'] = $name;
+		$contHtmlOptions = $this->htmlOptions;
+		$contHtmlOptions['id'] = $id . 'container';
+		echo CHtml::openTag('div', $contHtmlOptions);
+		$inputOptions = array('id' => $id, 'style' => 'float:left;' /* , 'readonly' => 'readonly' */);
+		if ($this->hasModel())
+			echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
+		else
+			echo CHtml::textField($name, $this->value, $inputOptions);
 
-        $contHtmlOptions = $this->htmlOptions;
-        $contHtmlOptions['id'] = $id . 'container';
-        echo CHtml::openTag('div', $contHtmlOptions);
-        $inputOptions = array('id' => $id, 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
-        if ($this->hasModel())
-            echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
-        else
-            echo CHtml::textField($name, $this->value, $inputOptions);
+		if (!empty($this->customButton)) {
+			echo $this->customButton;
+		} else {
+			echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn'));
+		}
+		echo CHtml::closeTag('div');
 
-        echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn'));
-        echo CHtml::closeTag('div');
+		// set required options
+		if (empty($this->popupConnectorRoute))
+			throw new CException('$popupConnectorRoute must be set!');
+		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array('fieldId' => $id));
 
-        $settings = array_merge(array(
-                'places' => "",
-                'rememberLastDir' => false,),
-            $this->settings
-        );
+		echo '<div id="' . $id . '-dialog" style="display:none;" title="' . $this->popupTitle . '">'
+		. '<iframe frameborder="0" width="100%" height="100%" src="' . $url . '">'
+		. '</iframe>'
+		. '</div>';
+		$js = '
+$("#' . $id . 'browse").click(function(){ $(function() {
+	$("#' . $id . '-dialog" ).dialog({
+		autoOpen: false,
+		position: "center",
+		title: "' . $this->popupTitle . '",
+		width: 900,
+		height: 550,
+		resizable : true,
+		modal : true,
+	}).dialog( "open" );
+});});';
 
-        $settings['dialog'] = array(
-            'zIndex' => 400001,
-            'width' => 900,
-            'modal' => true,
-            'title' => "Files",
-        );
-        $settings['editorCallback'] = 'js:function(url) {
-        $(\'#\'+aFieldId).attr(\'value\',url);
-        }';
-        $settings['closeOnEditorCallback'] = true;
-        $connectorUrl = CJavaScript::encode($this->settings['url']);
-        $settings = CJavaScript::encode($settings);
-        $script = <<<EOD
-        window.elfinderBrowse = function(field_id, connector) {
-            var aFieldId = field_id, aWin = this;
-            if($("#elFinderBrowser").length == 0) {
-                $("body").append($("<div/>").attr("id", "elFinderBrowser"));
-                var settings = $settings;
-                settings["url"] = connector;
-                $("#elFinderBrowser").elfinder(settings);
-            }
-            else {
-                $("#elFinderBrowser").elfinder("open", connector);
-            }
-        }
-EOD;
-        $cs = Yii::app()->getClientScript();
-        $cs->registerScript('ServerFileInput#global', $script);
-
-        $js = //'$("#'.$id.'").focus(function(){window.elfinderBrowse("'.$name.'")});'.
-            '$("#' . $id . 'browse").click(function(){window.elfinderBrowse("' . $id . '", '.$connectorUrl.')});';
-
-
-        $cs->registerScript('ServerFileInput#' . $id, $js);
-    }
+		Yii::app()->getClientScript()->registerScript('ServerFileInput#' . $id, $js);
+	}
 
 }
