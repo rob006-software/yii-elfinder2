@@ -57,7 +57,7 @@ How to use
 	}
 	```
 
-2. ServerFileInput - use this widget to choose file on server using ElFinder pop-up
+2. ServerFileInput - use this widget to choose file on server using elFinder pop-up
 
 	```php
 	$this->widget('ext.elFinder.ServerFileInput', array(
