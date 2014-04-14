@@ -30,7 +30,7 @@ class ElFinderWidget extends CWidget {
 		// set required options
 		if (empty($this->connectorRoute))
 			throw new CException('$connectorRoute must be set!');
-		$this->settings['url'] = Yii::app()->createUrl($this->connectorRoute);
+		$this->settings['url'] = Yii::app()->controller->createUrl($this->connectorRoute);
 		$this->settings['lang'] = Yii::app()->language;
 
 		$id = $this->getId();
