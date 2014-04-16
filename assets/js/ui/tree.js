@@ -160,13 +160,6 @@ $.fn.elfindertree = function(fm, opts) {
 			ptpl = fm.res('tpl', 'perms'),
 			
 			/**
-			 * Lock marker html template
-			 *
-			 * @type String
-			 */
-			ltpl = fm.res('tpl', 'lock'),
-			
-			/**
 			 * Symlink marker html template
 			 *
 			 * @type String
@@ -182,8 +175,7 @@ $.fn.elfindertree = function(fm, opts) {
 				id          : function(dir) { return fm.navHash2Id(dir.hash) },
 				cssclass    : function(dir) { return (dir.phash ? '' : root)+' '+navdir+' '+fm.perms2class(dir)+' '+(dir.dirs && !dir.link ? collapsed : ''); },
 				permissions : function(dir) { return !dir.read || !dir.write ? ptpl : ''; },
-				symlink     : function(dir) { return dir.alias ? stpl : ''; },
-				style       : function(dir) { return dir.icon ? 'style="background-image:url(\''+dir.icon+'\')"' : ''; }
+				symlink     : function(dir) { return dir.alias ? stpl : ''; }
 			},
 			
 			/**
@@ -376,7 +368,7 @@ $.fn.elfindertree = function(fm, opts) {
 			 */
 			tree = $(this).addClass(treeclass)
 				// make dirs draggable and toggle hover class
-				.delegate('.'+navdir, 'mouseenter mouseleave', function(e) {
+				.delegate('.'+navdir, 'hover', function(e) {
 					var link  = $(this), 
 						enter = e.type == 'mouseenter';
 					
@@ -402,24 +394,6 @@ $.fn.elfindertree = function(fm, opts) {
 					} else if (link.is('.'+collapsed)) {
 						link.children('.'+arrow).click();
 					}
-				})
-				// for touch device
-				.delegate('.'+navdir, 'touchstart', function(e) {
-					var self = this,
-					selfe = e;
-					$(this).data('touching', true);
-					$(this).data('longtap', setTimeout(function(e){
-						// long tap
-						fm.trigger('contextmenu', {
-							'type'    : 'navbar',
-							'targets' : [fm.navId2Hash($(self).attr('id'))],
-							'x'       : selfe.originalEvent.touches[0].clientX,
-							'y'       : selfe.originalEvent.touches[0].clientY
-						});
-					}, 500));
-				})
-				.delegate('.'+navdir, 'touchmove touchend', function(e) {
-					clearTimeout($(this).data('longtap'));
 				})
 				// toggle subfolders in tree
 				.delegate('.'+navdir+'.'+collapsed+' .'+arrow, 'click', function(e) {

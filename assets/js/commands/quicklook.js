@@ -81,14 +81,12 @@ elFinder.prototype.commands.quicklook = function() {
 		 **/
 		openedCss = function() {
 			var win = $(window);
-			var w = Math.min(width, $(window).width()-10);
-			var h = Math.min(height, $(window).height()-80);
 			return {
 				opacity : 1,
-				width  : w,
-				height : h,
-				top    : parseInt((win.height() - h - 60)/2 + win.scrollTop()),
-				left   : parseInt((win.width() - w)/2 + win.scrollLeft())
+				width  : width,
+				height : height,
+				top    : parseInt((win.height() - height)/2 + win.scrollTop()),
+				left   : parseInt((win.width() - width)/2 + win.scrollLeft())
 			}
 		},
 		
@@ -385,7 +383,7 @@ elFinder.prototype.commands.quicklook = function() {
 				e.keyCode == 27 && self.opened() && win.trigger('close')
 			})
 			
-			if ($.fn.resizable && !fm.UA.Touch) {
+			if ($.fn.resizable) {
 				win.resizable({ 
 					handles   : 'se', 
 					minWidth  : 350, 

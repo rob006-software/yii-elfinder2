@@ -188,8 +188,6 @@
 	text-align:center;
 	padding:2em 0;
 	border:3px dashed #aaa;
-	height: 1em;
-	overflow: hidden;
 }
 
 .elfinder-upload-dropbox.ui-state-hover {
