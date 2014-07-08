@@ -1,6 +1,6 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0.2 (2014-04-16)
+ * Version 2.0.2 (2014-07-08)
  * http://elfinder.org
  * 
  * Copyright 2009-2013, Studio 42
@@ -1597,11 +1597,11 @@ window.elFinder = function(node, opts) {
 		.bind('search', function(e) {
 			cache(e.data.files);
 		})
-		.bind('rm', function(e) {
-			var play  = beeper.canPlayType && beeper.canPlayType('audio/wav; codecs="1"');
-		
-			play && play != '' && play != 'no' && $(beeper).html('<source src="./sounds/rm.wav" type="audio/wav">')[0].play()
-		})
+//		.bind('rm', function(e) {
+//			var play  = beeper.canPlayType && beeper.canPlayType('audio/wav; codecs="1"');
+//		
+//			play && play != '' && play != 'no' && $(beeper).html('<source src="./sounds/rm.wav" type="audio/wav">')[0].play()
+//		})
 		
 		;
 
