@@ -24,7 +24,7 @@ class ElFinderWidget extends CWidget {
 	public $connectorRoute = false;
 
 	public function run() {
-		if (Yii::getPathOfAlias('ext.elFinder.ElFinderHelper'))
+		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper')))
 			Yii::import('ext.elFinder.ElFinderHelper');
 		else
 			Yii::import('elFinder.ElFinderHelper');
