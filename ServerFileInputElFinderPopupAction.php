@@ -28,10 +28,13 @@ class ServerFileInputElFinderPopupAction extends CAction {
 	public $settings = array();
 
 	public function run() {
-		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper')))
+		$alias = 'ext.elFinder';
+		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper'))) {
 			Yii::import('ext.elFinder.ElFinderHelper');
-		else
+		} else {
 			Yii::import('elFinder.ElFinderHelper');
+			$alias = 'elFinder';
+		}
 		ElFinderHelper::registerAssets();
 
 		// set required options
@@ -43,7 +46,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		);
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array('title' => $this->title,
+		$this->controller->render($alias'.views.ServerFileInputElFinderPopupAction', array('title' => $this->title,
 			'settings' => CJavaScript::encode($settings), 'fieldId' => $_GET["fieldId"]));
 	}
 
