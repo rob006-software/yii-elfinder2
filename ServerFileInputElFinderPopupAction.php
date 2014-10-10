@@ -28,7 +28,10 @@ class ServerFileInputElFinderPopupAction extends CAction {
 	public $settings = array();
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper')))
+			Yii::import('ext.elFinder.ElFinderHelper');
+		else
+			Yii::import('elFinder.ElFinderHelper');
 		ElFinderHelper::registerAssets();
 
 		// set required options
