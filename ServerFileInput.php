@@ -77,14 +77,10 @@ class ServerFileInput extends CInputWidget {
 		$js = '
 $("#' . $id . 'browse").click(function(){ $(function() {
 	$("#' . $id . '-dialog" ).dialog({
-		autoOpen: false,
-		position: "center",
 		title: "' . $this->popupTitle . '",
 		width: 900,
 		height: 550,
-		resizable : true,
-		modal : true,
-	}).dialog( "open" );
+	});
 });});';
 
 		Yii::app()->getClientScript()->registerScript('ServerFileInput#' . $id, $js);
