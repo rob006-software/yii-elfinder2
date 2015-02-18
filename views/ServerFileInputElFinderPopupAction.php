@@ -10,7 +10,7 @@
 					// Here goes your code for setting your custom things onLoad.
 				},
 				mySubmit: function(URL) {
-					self.parent.$('#<?php echo $fieldId; ?>').val(URL).change();
+					self.parent.document.getElementById('<?php echo $fieldId; ?>').value = URL;
 					self.parent.$('#<?php echo $fieldId; ?>-dialog').dialog('close');
 				}
 			}

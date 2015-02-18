@@ -21,12 +21,6 @@ class ServerFileInput extends CInputWidget {
 	public $popupTitle = 'Files';
 
 	/**
-	 * HTML options for rendered input field
-	 * @var array
-	 */
-	public $inputHtmlOptions = array();
-
-	/**
 	 * Custom "Browse" button html code
 	 * Button id must be according with the pattern [INPUT_FIELD_ID]browse, for exaple:
 	 * CHtml::button('Browse', array('id' => TbHtml::getIdByName(TbHtml::activeName($model, 'header_box_image')) . 'browse'));
@@ -52,7 +46,7 @@ class ServerFileInput extends CInputWidget {
 		$contHtmlOptions = $this->htmlOptions;
 		$contHtmlOptions['id'] = $id . 'container';
 		echo CHtml::openTag('div', $contHtmlOptions);
-		$inputOptions = array_merge(array('style' => 'float:left;'), $this->inputHtmlOptions, array('id' => $id));
+		$inputOptions = array('id' => $id, 'style' => 'float:left;' /* , 'readonly' => 'readonly' */);
 		if ($this->hasModel())
 			echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
 		else
@@ -77,10 +71,14 @@ class ServerFileInput extends CInputWidget {
 		$js = '
 $("#' . $id . 'browse").click(function(){ $(function() {
 	$("#' . $id . '-dialog" ).dialog({
+		autoOpen: false,
+		position: "center",
 		title: "' . $this->popupTitle . '",
 		width: 900,
 		height: 550,
-	});
+		resizable : true,
+		modal : true,
+	}).dialog( "open" );
 });});';
 
 		Yii::app()->getClientScript()->registerScript('ServerFileInput#' . $id, $js);

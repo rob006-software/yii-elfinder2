@@ -1,13 +1,13 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0.2 (2014-04-16)
+ * Version 2.0.2 (2014-04-12)
  * http://elfinder.org
  * 
  * Copyright 2009-2013, Studio 42
  * Licensed under a 3 clauses BSD license
  */
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/commands.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/commands.css */
 /******************************************************************/
 /*                          COMMANDS STYLES                       */
 /******************************************************************/
@@ -265,7 +265,7 @@
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/common.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/common.css */
 /*********************************************/
 /*            COMMON ELFINDER STUFFS         */
 /*********************************************/
@@ -284,6 +284,7 @@
 }
 
 /* dir/file permissions and symlink markers */
+.elfinder-lock,
 .elfinder-perms,
 .elfinder-symlink {
 	position:absolute;
@@ -304,6 +305,11 @@
 
 /* write only */
 .elfinder-wo .elfinder-perms { background-position:0 -80px;}
+
+/* locked */
+.elfinder-lock {
+	background-position:0 -656px;
+}
 
 /* drag helper */
 .elfinder-drag-helper {
@@ -363,7 +369,7 @@
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/contextmenu.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/contextmenu.css */
 /* menu and submenu */
 .elfinder-contextmenu,
 .elfinder-contextmenu-sub {
@@ -434,7 +440,7 @@
 	margin:0 1px;
 }
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/cwd.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/cwd.css */
 /******************************************************************/
 /*                     CURRENT DIRECTORY STYLES                   */
 /******************************************************************/
@@ -512,6 +518,7 @@
 
 /* permissions/symlink markers */
 .elfinder-cwd-view-icons .elfinder-perms { bottom:4px; right:2px; }
+.elfinder-cwd-view-icons .elfinder-lock { top:-3px; right:-2px; }
 .elfinder-cwd-view-icons .elfinder-symlink { bottom:6px; left:0px; }
 
 /* icon/thumbnail */
@@ -653,9 +660,11 @@
 
 /* premissions/symlink marker */
 .elfinder-cwd-view-list .elfinder-perms, 
+.elfinder-cwd-view-list .elfinder-lock,
 .elfinder-cwd-view-list .elfinder-symlink { top:50%; margin-top:-6px; }
 /* markers in ltr/rtl enviroment */
 .elfinder-ltr .elfinder-cwd-view-list .elfinder-perms   { left:7px;  }
+.elfinder-ltr .elfinder-cwd-view-list .elfinder-lock    { left:9px; top:0px; }
 .elfinder-ltr .elfinder-cwd-view-list .elfinder-symlink { left:-7px; }
 
 /* file icon */
@@ -673,7 +682,7 @@
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/dialog.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/dialog.css */
 /*********************************************/
 /*                DIALOGS STYLES             */
 /*********************************************/
@@ -864,6 +873,8 @@
 	text-align:center;
 	padding:2em 0;
 	border:3px dashed #aaa;
+	height: 1em;
+	overflow: hidden;
 }
 
 .elfinder-upload-dropbox.ui-state-hover {
@@ -919,7 +930,7 @@
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/fonts.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/fonts.css */
 .elfinder-contextmenu .elfinder-contextmenu-item span { font-size:.76em; }
 
 .elfinder-cwd-view-icons .elfinder-cwd-filename { font-size:.7em; }
@@ -943,7 +954,7 @@
 .elfinder-drag-num { font-size:12px; }
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/navbar.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/navbar.css */
 /*********************************************/
 /*              NAVIGATION PANEL             */
 /*********************************************/
@@ -1069,14 +1080,19 @@
 /* permissions marker */
 .elfinder-navbar .elfinder-perms { top:50%; margin-top:-8px; }
 
+/* locked marker */
+.elfinder-navbar .elfinder-lock { top:-2px; }
+
 /* permissions/symlink markers ltr/rtl enviroment */
 .elfinder-ltr .elfinder-navbar .elfinder-perms   { left:  18px; }
 .elfinder-rtl .elfinder-navbar .elfinder-perms   { right: 18px; }
+.elfinder-ltr .elfinder-navbar .elfinder-lock    { left:  18px; }
+.elfinder-rtl .elfinder-navbar .elfinder-lock    { right: 18px; }
 .elfinder-ltr .elfinder-navbar .elfinder-symlink { left:  8px; }
 .elfinder-rtl .elfinder-navbar .elfinder-symlink { right: 8px; }
 
 /* resizable */
-.elfinder-navbar .ui-resizable-handle { width:12px; background:transparent url('../img/resize.png') center center no-repeat; left:0; }
+.elfinder-navbar .ui-resizable-handle { width:12px; background:transparent url('../img/resize.png') center center no-repeat; }
 .elfinder-nav-handle-icon {
 	position:absolute;
 	top:50%;
@@ -1095,9 +1111,9 @@
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/places.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/places.css */
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/quicklook.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/quicklook.css */
 /* quicklook window */
 .elfinder-quicklook {
 	position:absolute;
@@ -1363,7 +1379,7 @@ embed.elfinder-quicklook-preview-audio {
 
 
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/statusbar.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/statusbar.css */
 /******************************************************************/
 /*                           STATUSBAR STYLES                     */
 /******************************************************************/
@@ -1402,7 +1418,7 @@ embed.elfinder-quicklook-preview-audio {
 
 .elfinder-stat-selected { white-space:nowrap; overflow:hidden; }
 
-/* File: /home/robert/Poligon/elFinder-2.x/css/toolbar.css */
+/* File: /home/robert/Poligon/elFinder-2.1/css/toolbar.css */
 /*********************************************/
 /*               TOOLBAR STYLES              */
 /*********************************************/
@@ -1519,6 +1535,8 @@ embed.elfinder-quicklook-preview-audio {
 .elfinder-button-icon-sort      { background-position: 0 -577px; }
 .elfinder-button-icon-rotate-r  { background-position: 0 -625px; }
 .elfinder-button-icon-rotate-l  { background-position: 0 -641px; }
+.elfinder-button-icon-netmount  { background-position: 0 -688px; }
+.elfinder-button-icon-netunmount { background-position: 0 -96px; }
 
 /* button with dropdown menu*/
 .elfinder .elfinder-menubutton { overflow:visible; }
