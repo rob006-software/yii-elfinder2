@@ -69,8 +69,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver {
 			'socket'        => null,
 			'files_table'   => 'elfinder_file',
 			'tmbPath'       => '',
-			'tmpPath'       => '',
-			'icon'          => (defined('ELFINDER_IMG_PARENT_URL')? (rtrim(ELFINDER_IMG_PARENT_URL, '/').'/') : '').'img/volume_icon_sql.png'
+			'tmpPath'       => ''
 		);
 		$this->options = array_merge($this->options, $opts);
 		$this->options['mimeDetect'] = 'internal';

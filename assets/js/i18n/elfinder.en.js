@@ -1,7 +1,7 @@
 /**
  * English translation
  * @author Troex Nevelin <troex@fury.scancode.ru>
- * @version 2014-04-08
+ * @version 2013-07-03
  */
 if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object') {
 	elFinder.prototype.i18.en = {
@@ -91,8 +91,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'errFtpMkdir'          : 'Unable to create remote directory on FTP: "$1"',
 			'errArchiveExec'       : 'Error while archiving files: "$1"',
 			'errExtractExec'       : 'Error while extracting files: "$1"',
-			'errNetUnMount'        : 'Unable to unmount', // added 30.04.2012
-			'errConvUTF8'          : 'Not convertible to UTF-8', // added 08.04.2014
 
 			/******************************* commands names ********************************/
 			'cmdarchive'   : 'Create archive',
@@ -123,7 +121,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'cmdresize'    : 'Resize & Rotate',
 			'cmdsort'      : 'Sort',
 			'cmdnetmount'  : 'Mount network volume', // added 18.04.2012
-			'cmdnetunmount': 'Unmount', // added 30.04.2012
 			
 			/*********************************** buttons ***********************************/ 
 			'btnClose'  : 'Close',
@@ -134,9 +131,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'btnNo'     : 'No',
 			'btnYes'    : 'Yes',
 			'btnMount'  : 'Mount',  // added 18.04.2012
-			'btnApprove': 'Goto $1 & approve', // added 26.04.2012
-			'btnUnmount': 'Unmount', // added 30.04.2012
-			'btnConv'   : 'Convert', // added 08.04.2014
 			/******************************** notifications ********************************/
 			'ntfopen'     : 'Open folder',
 			'ntffile'     : 'Open file',
@@ -158,10 +152,7 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'ntfsmth'     : 'Doing something',
 			'ntfloadimg'  : 'Loading image',
 			'ntfnetmount' : 'Mounting network volume', // added 18.04.2012
-			'ntfnetunmount': 'Unmounting network volume', // added 30.04.2012
 			'ntfdim'      : 'Acquiring image dimension', // added 20.05.2013
-			'ntfreaddir'  : 'Reading folder infomation', // added 01.07.2013
-			'ntfurl'      : 'Getting URL of link', // added 11.03.2014
 			
 			/************************************ dates **********************************/
 			'dateUnknown' : 'unknown',
@@ -191,7 +182,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'confirmReq'      : 'Confirmation required',
 			'confirmRm'       : 'Are you sure you want to remove files?<br/>This cannot be undone!',
 			'confirmRepl'     : 'Replace old file with new one?',
-			'confirmConvUTF8' : 'Not in UTF-8<br/>Convert to UTF-8?<br/>Contents become UTF-8 by saving after conversion.', // added 08.04.2014
 			'apllyAll'        : 'Apply to all',
 			'name'            : 'Name',
 			'size'            : 'Size',
@@ -265,9 +255,6 @@ if (elFinder && elFinder.prototype && typeof(elFinder.prototype.i18) == 'object'
 			'port'                : 'Port', // added 18.04.2012
 			'user'                : 'User', // added 18.04.2012
 			'pass'                : 'Password', // added 18.04.2012
-			'confirmUnmount'      : 'Are you unmount $1?',  // added 30.04.2012
-			'dropFilesBrowser': 'Drop or Paste files from browser', // added 30.05.2012
-			'dropPasteFiles'  : 'Drop or Paste files here', // added 07.04.2014
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Unknown',
