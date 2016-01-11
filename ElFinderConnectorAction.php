@@ -30,6 +30,7 @@ class ElFinderConnectorAction extends CAction {
 		$assetsURL = Yii::app()->assetManager->getPublishedUrl($dir);
 		define('ELFINDER_IMG_PARENT_URL', $assetsURL);
 
+		header("Content-Type: application/json");
 		$fm = new elFinderConnector(new elFinder($this->settings));
 		$fm->run();
 	}
