@@ -16,6 +16,11 @@ class ServerFileInput extends CInputWidget {
 	public $popupConnectorRoute = false;
 
 	/**
+	 * @var array
+	 */
+	public $popupConnectorParams = array();
+
+	/**
 	 * @var string
 	 */
 	public $popupTitle = 'Files';
@@ -68,7 +73,7 @@ class ServerFileInput extends CInputWidget {
 		// set required options
 		if (empty($this->popupConnectorRoute))
 			throw new CException('$popupConnectorRoute must be set!');
-		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array('fieldId' => $id));
+		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array_merge(array('fieldId' => $id), $this->popupConnectorParams));
 
 		echo '<div id="' . $id . '-dialog" style="display:none;" title="' . $this->popupTitle . '">'
 		. '<iframe frameborder="0" width="100%" height="100%" src="' . $url . '">'
