@@ -15,6 +15,11 @@ class ServerFileInputElFinderPopupAction extends CAction {
 	public $connectorRoute = false;
 
 	/**
+	 * @var array
+	 */
+	public $connectorGetParams = array();
+
+	/**
 	 * Popup title
 	 * @var string
 	 */
@@ -35,7 +40,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		if (empty($this->connectorRoute))
 			throw new CException('$connectorRoute must be set!');
 		$settings = array(
-			'url' => $this->controller->createUrl($this->connectorRoute),
+			'url' => $this->controller->createUrl($this->connectorRoute, $this->connectorGetParams),
 			'lang' => Yii::app()->language,
 		);
 
