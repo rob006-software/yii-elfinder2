@@ -26,6 +26,12 @@ class ServerFileInput extends CInputWidget {
 	public $popupTitle = 'Files';
 
 	/**
+	 * HTML options for rendered input field
+	 * @var array
+	 */
+	public $inputHtmlOptions = array();
+
+	/**
 	 * Custom "Browse" button html code
 	 * Button id must be according with the pattern [INPUT_FIELD_ID]browse, for exaple:
 	 * CHtml::button('Browse', array('id' => TbHtml::getIdByName(TbHtml::activeName($model, 'header_box_image')) . 'browse'));
