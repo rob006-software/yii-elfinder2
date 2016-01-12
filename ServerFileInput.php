@@ -43,46 +43,64 @@ class ServerFileInput extends CInputWidget {
 		Yii::import('ext.elFinder.ElFinderHelper');
 		ElFinderHelper::registerAssets();
 
+		if (empty($this->popupConnectorRoute)) {
+			throw new CException('$popupConnectorRoute must be set!');
+		}
+
 		list($name, $id) = $this->resolveNameID();
 
-		if (isset($this->htmlOptions['id']))
+		if (isset($this->htmlOptions['id'])) {
 			$id = $this->htmlOptions['id'];
-		else
+		} else {
 			$this->htmlOptions['id'] = $id;
-		if (isset($this->htmlOptions['name']))
-			$name = $this->htmlOptions['name'];
-		else
-			$this->htmlOptions['name'] = $name;
+		}
 
+		if (isset($this->htmlOptions['name'])) {
+			$name = $this->htmlOptions['name'];
+		} else {
+			$this->htmlOptions['name'] = $name;
+		}
+
+		// open container
 		$contHtmlOptions = $this->htmlOptions;
 		$contHtmlOptions['id'] = $id . 'container';
 		echo CHtml::openTag('div', $contHtmlOptions);
-		$inputOptions = array_merge(array('style' => 'float:left;'), $this->inputHtmlOptions, array('id' => $id));
-		if ($this->hasModel())
-			echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
-		else
-			echo CHtml::textField($name, $this->value, $inputOptions);
 
+		// render input
+		$inputOptions = array_merge(array('style' => 'float:left;'), $this->inputHtmlOptions, array('id' => $id));
+		if ($this->hasModel()) {
+			echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
+		} else {
+			echo CHtml::textField($name, $this->value, $inputOptions);
+		}
+
+		// append button to input
 		if (!empty($this->customButton)) {
 			echo $this->customButton;
 		} else {
 			echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn'));
 		}
+
+		// close container
 		echo CHtml::closeTag('div');
 
-		// set required options
-		if (empty($this->popupConnectorRoute))
-			throw new CException('$popupConnectorRoute must be set!');
 		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array_merge(array('fieldId' => $id), $this->popupConnectorParams));
+		$iframe = CHtml::tag('iframe', array(
+					'frameborder' => 0,
+					'width' => '100%',
+					'height' => '100%',
+					'src' => $url,
+						), '');
+		echo CHtml::tag('div', array(
+			'id' => $id . '-dialog',
+			'style' => 'display:none;',
+			'title' => $this->popupTitle,
+				), $iframe);
 
-		echo '<div id="' . $id . '-dialog" style="display:none;" title="' . $this->popupTitle . '">'
-		. '<iframe frameborder="0" width="100%" height="100%" src="' . $url . '">'
-		. '</iframe>'
-		. '</div>';
 		$js = '
 $("#' . $id . 'browse").click(function(){ $(function() {
 	$("#' . $id . '-dialog" ).dialog({
-		title: "' . $this->popupTitle . '",
+		title: ' . CJSON::encode($this->popupTitle) . ',
 		width: 900,
 		height: 550,
 	});

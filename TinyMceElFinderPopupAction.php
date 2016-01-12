@@ -17,7 +17,7 @@ class TinyMceElFinderPopupAction extends CAction {
 	/**
 	 * @var array
 	 */
-	public $connectorGetParams = array();
+	public $connectorParams = array();
 
 	/**
 	 * Popup title
@@ -37,16 +37,15 @@ class TinyMceElFinderPopupAction extends CAction {
 		ElFinderHelper::registerAssets();
 
 		// set required options
-		if (empty($this->connectorRoute))
+		if (empty($this->connectorRoute)) {
 			throw new CException('$connectorRoute must be set!');
-		$settings = array(
-			'url' => $this->controller->createUrl($this->connectorRoute, $this->connectorGetParams),
-			'lang' => Yii::app()->language,
-		);
+		}
+		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
+		$this->settings['lang'] = Yii::app()->language;
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array('title' => $this->title,
-			'settings' => CJavaScript::encode($settings)));
+		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array(
+			'title' => $this->title, 'settings' => $this->settings));
 	}
 
 }

@@ -28,15 +28,17 @@ class TinyMceElFinder extends TinyMceFileManager {
 	public $popupTitle = 'Files';
 
 	public function getFileBrowserCallback() {
-		if (empty($this->popupConnectorRoute))
+		if (empty($this->popupConnectorRoute)) {
 			throw new CException('$popupConnectorRoute must be set!');
-		$connectorUrl = Yii::app()->controller->createUrl($this->popupConnectorRoute, $this->popupConnectorParams);
+		}
+		$connectorUrl = CJSON::encode(Yii::app()->controller->createUrl($this->popupConnectorRoute, $this->popupConnectorParams));
+		$title = CJSON::encode($this->popupTitle);
 
 		$script = <<<JS
 function (field_name, url, type, win) {
 	tinymce.activeEditor.windowManager.open({
-		file: '$connectorUrl',
-		title: '{$this->popupTitle}',
+		file: $connectorUrl,
+		title: $title,
 		width: 900,
 		height: 450,
 		resizable: "yes"
