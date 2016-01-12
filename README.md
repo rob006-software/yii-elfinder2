@@ -6,7 +6,20 @@ Based on https://bitbucket.org/z_bodya/yii-elfinder with updated [elFinder](http
 How to use
 --------------------------
 
-0. Checkout source code to your project to ext.elFinder
+0. Checkout source code to your project to ext.elFinder.
+	You can use custom elFinder code, just set `elFindervendor` alias to point your elFinder code directory.
+
+	```php
+	'aliases' => array(
+		'elFindervendor' => 'vendor.myCystomElFinder',
+	),
+	```
+
+	You can get elFinder from https://github.com/Studio-42/elFinder/releases - remember to move `css`, `img`, `js`
+	and `sounds` directories to `assets` directory, so elFinder source will look like:
+
+	![](http://f.rob006.net/p/2016/5acc96076751b96d9d94cc3f65de.png)
+
 1. Create controller for connector action, and configure it params
 
 	```php

@@ -33,7 +33,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 	public $settings = array();
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		require_once dirname(__FILE__) . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
 		if(empty($_GET['fieldId']) || !preg_match('/[a-z0-9\-_]/i', $_GET['fieldId'])) {
