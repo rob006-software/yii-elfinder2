@@ -17,7 +17,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 	/**
 	 * @var array
 	 */
-	public $connectorGetParams = array();
+	public $connectorParams = array();
 
 	/**
 	 * Popup title
@@ -36,17 +36,20 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		Yii::import('ext.elFinder.ElFinderHelper');
 		ElFinderHelper::registerAssets();
 
+		if(empty($_GET['fieldId']) || !preg_match('/[a-z0-9\-_]/i', $_GET['fieldId'])) {
+			throw new CHttpException(400, Yii::t('yii', 'Your request is invalid.'));
+		}
+
 		// set required options
-		if (empty($this->connectorRoute))
+		if (empty($this->connectorRoute)) {
 			throw new CException('$connectorRoute must be set!');
-		$settings = array(
-			'url' => $this->controller->createUrl($this->connectorRoute, $this->connectorGetParams),
-			'lang' => Yii::app()->language,
-		);
+		}
+		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
+		$this->settings['lang'] = Yii::app()->language;
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array('title' => $this->title,
-			'settings' => CJavaScript::encode($settings), 'fieldId' => $_GET["fieldId"]));
+		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array(
+			'title' => $this->title, 'settings' => $this->settings, 'fieldId' => $_GET['fieldId']));
 	}
 
 }

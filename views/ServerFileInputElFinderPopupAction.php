@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo $title; ?></title>
+		<title><?php echo TbHtml::encode($title); ?></title>
 
 		<script type="text/javascript">
 			var FileBrowserDialogue = {
@@ -16,9 +16,9 @@
 			}
 
 			$().ready(function() {
-				var elfSettings = <?php echo $settings; ?>;
+				var elfSettings = <?php echo CJSON::encode($settings); ?>;
 				elfSettings["getFileCallback"] = function(file) { // editor callback
-					FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
+					FileBrowserDialogue.mySubmit(file.url); // pass selected file path to field
 				};
 				var elf = $('#elfinder').elfinder(elfSettings).elfinder('instance');
 			});
