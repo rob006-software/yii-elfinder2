@@ -48,15 +48,16 @@ class ElFinderHelper extends CComponent {
 	 * Register necessary elFinder scripts and styles
 	 */
 	public static function registerAssets() {
-		$dir = dirname(__FILE__) . '/assets';
-		$assetsDir = Yii::app()->assetManager->publish($dir);
+		self::registerAlias();
+		$dir = Yii::getPathOfAlias('elFindervendor.assets');
+		$assetsDir = Yii::app()->getAssetManager()->publish($dir);
 		$cs = Yii::app()->getClientScript();
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
 			$csrfTokenName = Yii::app()->request->csrfTokenName;
 			$csrfToken = Yii::app()->request->csrfToken;
-			Yii::app()->clientScript->registerMetaTag($csrfToken, 'csrf-token', null, array(), 'csrf-token');
-			Yii::app()->clientScript->registerMetaTag($csrfTokenName, 'csrf-param', null, array(), 'csrf-param');
+			$cs->registerMetaTag($csrfToken, 'csrf-token', null, array(), 'csrf-token');
+			$cs->registerMetaTag($csrfTokenName, 'csrf-param', null, array(), 'csrf-param');
 		}
 
 		// jQuery and jQuery UI
@@ -83,18 +84,28 @@ class ElFinderHelper extends CComponent {
 		if (!in_array($lang, self::$availableLanguages)) {
 			if (strpos($lang, '_')) {
 				$lang = substr($lang, 0, strpos($lang, '_'));
-				if (!in_array($lang, self::$availableLanguages))
+				if (!in_array($lang, self::$availableLanguages)) {
 					$lang = false;
+				}
 			} else {
 				$lang = false;
 			}
 		}
-		if ($lang !== false)
+		if ($lang !== false) {
 			$cs->registerScriptFile($assetsDir . '/js/i18n/elfinder.' . $lang . '.js');
+		}
 
 		// some css fixes
 		Yii::app()->clientScript->registerCss('elfinder-file-bg-fixer', '.elfinder-cwd-file,.elfinder-cwd-file .elfinder-cwd-file-wrapper,.elfinder-cwd-file .elfinder-cwd-filename{background-image:none !important;}');
+	}
 
+	public static function registerAlias() {
+		if (!Yii::getPathOfAlias('elFinder')) {
+			Yii::setPathOfAlias('elFinder', dirname(__FILE__));
+		}
+		if (!Yii::getPathOfAlias('elFindervendor')) {
+			Yii::setPathOfAlias('elFindervendor', 'elFinder.vendor');
+		}
 	}
 
 }

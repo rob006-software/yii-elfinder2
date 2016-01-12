@@ -33,7 +33,7 @@ class TinyMceElFinderPopupAction extends CAction {
 	public $settings = array();
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		require_once dirname(__FILE__) . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
 		// set required options

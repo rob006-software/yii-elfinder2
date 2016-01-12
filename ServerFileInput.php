@@ -34,7 +34,7 @@ class ServerFileInput extends CInputWidget {
 	public $customButton = '';
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		require_once dirname(__FILE__) . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
 		if (empty($this->popupConnectorRoute)) {
