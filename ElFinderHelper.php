@@ -104,7 +104,7 @@ class ElFinderHelper extends CComponent {
 			Yii::setPathOfAlias('elFinder', dirname(__FILE__));
 		}
 		if (!Yii::getPathOfAlias('elFindervendor')) {
-			Yii::setPathOfAlias('elFindervendor', 'elFinder.vendor');
+			Yii::setPathOfAlias('elFindervendor', Yii::getPathOfAlias('elFinder.vendor'));
 		}
 	}
 
