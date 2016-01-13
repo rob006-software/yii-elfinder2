@@ -1,22 +1,20 @@
 {
-    "name": "rob006/yii-elfinder2",
-    "description": "Extension to use elFinder 2.x file manager in yii application",
-    "keywords": ["widget", "tinymce", "file manager"],
+	"name": "rob006/yii-elfinder2",
+	"version": "1.1.0",
+	"description": "Extension to use elFinder 2.1 file manager in yii application",
+	"keywords": ["widget", "tinymce", "file manager", "elFinder"],
 	"homepage": "https://github.com/rob006/yii-elfinder2",
-    "type": "yii-extension",
-    "extra": {
-        "installer-name": "elFinder2"
-    },
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Robert Korulczyk",
-            "email": "robert@korulczyk.pl",
-			"hompage": "http://rob006.net"
-        },
-        {
-            "name": "Bogdan Savluk",
-            "email": "savluk.bogdan@gmail.com"
-        }
-    ]
+	"type": "yii-extension",
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Robert Korulczyk",
+			"email": "robert@korulczyk.pl",
+			"hompage": "https://rob006.net/"
+		},
+		{
+			"name": "Bogdan Savluk",
+			"email": "savluk.bogdan@gmail.com"
+		}
+	]
 }

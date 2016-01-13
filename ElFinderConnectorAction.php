@@ -20,6 +20,7 @@ class ElFinderConnectorAction extends CAction {
 	public function run() {
 		require_once dirname(__FILE__) . '/ElFinderHelper.php';
 		ElFinderHelper::registerAlias();
+
 		$php_path = Yii::getPathOfAlias('elFindervendor.php');
 		require_once($php_path . '/elFinder.class.php');
 		require_once($php_path . '/elFinderConnector.class.php');
@@ -27,6 +28,7 @@ class ElFinderConnectorAction extends CAction {
 		require_once($php_path . '/elFinderVolumeLocalFileSystem.class.php');
 		require_once($php_path . '/elFinderVolumeMySQL.class.php');
 		require_once($php_path . '/elFinderVolumeFTP.class.php');
+		require_once($php_path . '/elFinderVolumeFTPIIS.class.php');
 
 		// path for icons
 		$dir = Yii::getPathOfAlias('elFindervendor.assets');
