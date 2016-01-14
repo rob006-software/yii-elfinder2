@@ -1,6 +1,7 @@
 <?php
 
-Yii::import('ext.tinymce.TinyMceFileManager');
+require_once dirname(__FILE__) . '/ElFinderHelper.php';
+ElFinderHelper::importTinyMceFileManager();
 
 /**
  * elFnder file manager for TinyMCE

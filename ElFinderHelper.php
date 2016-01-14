@@ -132,4 +132,19 @@ class ElFinderHelper extends CComponent {
 		return self::$_assetsDir;
 	}
 
+	/**
+	 * Try import TinyMceFileManager class.
+	 */
+	public static function importTinyMceFileManager() {
+		if (@class_exists('TinyMceFileManager')) {
+			// class already imported or declared
+		} elseif (Yii::getPathOfAlias('tinymce')) {
+			// try import by declared alias
+			Yii::import('tinymce.TinyMceFileManager');
+		} else {
+			// try import by default extension directory
+			Yii::import('ext.tinymce.TinyMceFileManager');
+		}
+	}
+
 }
