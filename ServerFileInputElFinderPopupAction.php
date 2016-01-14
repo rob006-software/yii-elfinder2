@@ -46,6 +46,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
+		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
 
 		$this->controller->layout = false;
 		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array(
