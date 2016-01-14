@@ -34,7 +34,10 @@ class ServerFileInput extends CInputWidget {
 	public $customButton = '';
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper')))
+			Yii::import('ext.elFinder.ElFinderHelper');
+		else
+			Yii::import('elFinder.ElFinderHelper');
 		ElFinderHelper::registerAssets();
 
 		list($name, $id) = $this->resolveNameID();

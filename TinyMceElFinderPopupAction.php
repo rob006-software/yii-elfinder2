@@ -33,7 +33,13 @@ class TinyMceElFinderPopupAction extends CAction {
 	public $settings = array();
 
 	public function run() {
-		Yii::import('ext.elFinder.ElFinderHelper');
+		$alias = 'ext.elFinder';
+		if (is_file(Yii::getPathOfAlias('ext.elFinder.ElFinderHelper'))) {
+			Yii::import('ext.elFinder.ElFinderHelper');
+		} else {
+			Yii::import('elFinder.ElFinderHelper');
+			$alias = 'elFinder';
+		}
 		ElFinderHelper::registerAssets();
 
 		// set required options
@@ -45,7 +51,7 @@ class TinyMceElFinderPopupAction extends CAction {
 		);
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array('title' => $this->title,
+		$this->controller->render($alias.'.views.TinyMceElFinderPopupAction', array('title' => $this->title,
 			'settings' => CJavaScript::encode($settings)));
 	}
 

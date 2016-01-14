@@ -8,7 +8,10 @@ Based on https://bitbucket.org/z_bodya/yii-elfinder with updated [elFinder](http
 How to use
 --------------------------
 
-0. Checkout source code to your project to ext.elFinder
+0. Checkout source code to your project to ext.elFinder.
+   If you has been used composer, you need to set path alias for elFinder package in vendor directory
+
+	```Yii::setPathOfAlias('elFinder', dirname(__FILE__) . '/../../vendor/sagifire/yii-elfinder2');```
 1. Create controller for connector action, and configure it params
 
 	```php
