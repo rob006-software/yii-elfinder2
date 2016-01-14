@@ -19,7 +19,8 @@ class ElFinderConnectorAction extends CAction {
 
 	public function run() {
 		require_once dirname(__FILE__) . '/ElFinderHelper.php';
-		ElFinderHelper::registerAlias();
+		$assetsDir = ElFinderHelper::getAssetsDir();
+		define('ELFINDER_IMG_PARENT_URL', $assetsDir);
 
 		$php_path = Yii::getPathOfAlias('elFindervendor.php');
 		require_once($php_path . '/elFinder.class.php');
@@ -28,11 +29,6 @@ class ElFinderConnectorAction extends CAction {
 		require_once($php_path . '/elFinderVolumeLocalFileSystem.class.php');
 		require_once($php_path . '/elFinderVolumeMySQL.class.php');
 		require_once($php_path . '/elFinderVolumeFTP.class.php');
-
-		// path for icons
-		$dir = Yii::getPathOfAlias('elFindervendor.assets');
-		$assetsDir = Yii::app()->getAssetManager()->publish($dir);
-		define('ELFINDER_IMG_PARENT_URL', $assetsDir);
 
 		header("Content-Type: application/json");
 		$fm = new elFinderConnector(new elFinder($this->settings));
