@@ -36,7 +36,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		require_once dirname(__FILE__) . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
-		if(empty($_GET['fieldId']) || !preg_match('/[a-z0-9\-_]/i', $_GET['fieldId'])) {
+		if (empty($_GET['fieldId']) || !preg_match('/[a-z0-9\-_]/i', $_GET['fieldId'])) {
 			throw new CHttpException(400, Yii::t('yii', 'Your request is invalid.'));
 		}
 
@@ -47,6 +47,12 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
 		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
+
+		if (Yii::app()->getRequest()->enableCsrfValidation) {
+			$this->settings['customData'] = array(
+				Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
+			);
+		}
 
 		$this->controller->layout = false;
 		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array(
