@@ -43,6 +43,12 @@ class TinyMceElFinderPopupAction extends CAction {
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
 
+		if (Yii::app()->getRequest()->enableCsrfValidation) {
+			$this->settings['customData'] = array(
+				Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
+			);
+		}
+
 		$this->controller->layout = false;
 		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array(
 			'title' => $this->title, 'settings' => $this->settings));

@@ -39,6 +39,12 @@ class ElFinderWidget extends CWidget {
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
 
+		if (Yii::app()->getRequest()->enableCsrfValidation) {
+			$this->settings['customData'] = array(
+				Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
+			);
+		}
+
 		$id = $this->getId();
 		$settings = CJavaScript::encode($this->settings);
 		$cs = Yii::app()->getClientScript();
