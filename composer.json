@@ -1,6 +1,6 @@
 {
 	"name": "rob006/yii-elfinder2",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Extension to use elFinder 2.0 file manager in yii application",
 	"keywords": ["widget", "tinymce", "file manager", "elFinder"],
 	"homepage": "https://github.com/rob006/yii-elfinder2",
