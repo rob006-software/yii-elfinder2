@@ -61,13 +61,6 @@ class ElFinderHelper extends CComponent {
 		$assetsDir = self::getAssetsDir();
 		$cs = Yii::app()->getClientScript();
 
-		if (Yii::app()->getRequest()->enableCsrfValidation) {
-			$csrfTokenName = Yii::app()->request->csrfTokenName;
-			$csrfToken = Yii::app()->request->csrfToken;
-			$cs->registerMetaTag($csrfToken, 'csrf-token', null, array(), 'csrf-token');
-			$cs->registerMetaTag($csrfTokenName, 'csrf-param', null, array(), 'csrf-param');
-		}
-
 		// jQuery and jQuery UI
 		$cs->registerCoreScript('jquery');
 		$cs->registerCoreScript('jquery.ui');
