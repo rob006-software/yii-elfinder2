@@ -43,6 +43,7 @@ class ElFinderHelper extends CComponent {
 		'sr',
 		'sv',
 		'tr',
+		'ug_CN',
 		'uk',
 		'vi',
 		'zh_CN',

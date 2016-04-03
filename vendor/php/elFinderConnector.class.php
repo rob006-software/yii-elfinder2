@@ -93,23 +93,35 @@ class elFinderConnector {
 		}
 		
 		// collect required arguments to exec command
+		$hasFiles = false;
 		foreach ($this->elFinder->commandArgsList($cmd) as $name => $req) {
-			$arg = $name == 'FILES' 
-				? $_FILES 
-				: (isset($src[$name]) ? $src[$name] : '');
-				
-			if (!is_array($arg)) {
-				$arg = trim($arg);
+			if ($name === 'FILES') {
+				if (isset($_FILES)) {
+					$hasFiles = true;
+				} elseif ($req) {
+					$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_INV_PARAMS, $cmd)));
+				}
+			} else {
+				$arg = isset($src[$name])? $src[$name] : '';
+			
+				if (!is_array($arg)) {
+					$arg = trim($arg);
+				}
+				if ($req && $arg === '') {
+					$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_INV_PARAMS, $cmd)));
+				}
+				$args[$name] = $arg;
 			}
-			if ($req && (!isset($arg) || $arg === '')) {
-				$this->output(array('error' => $this->elFinder->error(elFinder::ERROR_INV_PARAMS, $cmd)));
-			}
-			$args[$name] = $arg;
 		}
 		
 		$args['debug'] = isset($src['debug']) ? !!$src['debug'] : false;
 		
-		$this->output($this->elFinder->exec($cmd, $this->input_filter($args)));
+		$args = $this->input_filter($args);
+		if ($hasFiles) {
+			$args['FILES'] = $_FILES;
+		}
+		
+		$this->output($this->elFinder->exec($cmd, $args));
 	}
 	
 	/**
@@ -121,7 +133,7 @@ class elFinderConnector {
 	 **/
 	protected function output(array $data) {
 		// clear output buffer
-		while(@ob_get_level()){ @ob_end_clean(); }
+		while(ob_get_level() && @ob_end_clean()){}
 		
 		$header = isset($data['header']) ? $data['header'] : $this->header;
 		unset($data['header']);
@@ -138,7 +150,7 @@ class elFinderConnector {
 		if (isset($data['pointer'])) {
 			$toEnd = true;
 			$fp = $data['pointer'];
-			if (elFinder::isSeekableStream($fp)) {
+			if (elFinder::isSeekableStream($fp) && (array_search('Accept-Ranges: none', headers_list()) === false)) {
 				header('Accept-Ranges: bytes');
 				$psize = null;
 				if (!empty($_SERVER['HTTP_RANGE'])) {
@@ -174,10 +186,17 @@ class elFinderConnector {
 				}
 			} else {
 				header('Accept-Ranges: none');
+				if (isset($data['info']) && ! $data['info']['size']) {
+					if (function_exists('header_remove')) {
+						header_remove('Content-Length');
+					} else {
+						header('Content-Length:');
+					}
+				}
 			}
 
 			// unlock session data for multiple access
-			session_id() && session_write_close();
+			$this->elFinder->getSession()->close();
 			// client disconnect should abort
 			ignore_user_abort(false);
 
@@ -194,10 +213,12 @@ class elFinderConnector {
 			exit();
 		} else {
 			if (!empty($data['raw']) && !empty($data['error'])) {
-				exit($data['error']);
+				echo $data['error'];
 			} else {
-				exit(json_encode($data));
+				echo json_encode($data);
 			}
+			flush();
+			exit(0);
 		}
 		
 	}

@@ -22,6 +22,9 @@ class ElFinderConnectorAction extends CAction {
 		$assetsDir = ElFinderHelper::getAssetsDir();
 		define('ELFINDER_IMG_PARENT_URL', $assetsDir);
 
+		Yii::import('elFindervendor.php.elFinderSession');
+		Yii::import('elFindervendor.php.elFinderSessionInterface');
+
 		$php_path = Yii::getPathOfAlias('elFindervendor.php');
 		require_once($php_path . '/elFinder.class.php');
 		require_once($php_path . '/elFinderConnector.class.php');
