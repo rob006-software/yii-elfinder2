@@ -1,4 +1,4 @@
-elFinder 2.x integration for Yii 1.1
+elFinder 2.1 integration for Yii 1.1
 ====================================
 
 **This branch is based on elFinder v2.1, which may still has some bugs. Use at your own risk**
