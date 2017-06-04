@@ -26,12 +26,7 @@ class ElFinderConnectorAction extends CAction {
 		Yii::import('elFindervendor.php.elFinderSessionInterface');
 
 		$php_path = Yii::getPathOfAlias('elFindervendor.php');
-		require_once($php_path . '/elFinder.class.php');
-		require_once($php_path . '/elFinderConnector.class.php');
-		require_once($php_path . '/elFinderVolumeDriver.class.php');
-		require_once($php_path . '/elFinderVolumeLocalFileSystem.class.php');
-		require_once($php_path . '/elFinderVolumeMySQL.class.php');
-		require_once($php_path . '/elFinderVolumeFTP.class.php');
+		require_once($php_path . '/autoload.php');
 
 		header("Content-Type: application/json");
 		$fm = new elFinderConnector(new elFinder($this->settings));

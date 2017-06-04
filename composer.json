@@ -28,7 +28,7 @@
 		"yiisoft/yii": "~1.1.18"
 	},
 	"replace": {
-		"studio-42/elfinder": "2.0.9"
+		"studio-42/elfinder": "2.1.24"
 	},
 	"autoload": {
 		"classmap": [
