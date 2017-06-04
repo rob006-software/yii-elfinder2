@@ -1,10 +1,10 @@
 /*!
  * elFinder - file manager for web
- * Version 2.0.5 (2015-12-26)
+ * Version 2.0.9 (2017-02-25)
  * http://elfinder.org
  *
- * Copyright 2009-2015, Studio 42
- * Licensed under a 3 clauses BSD license
+ * Copyright 2009-2017, Studio 42
+ * Licensed under a 3-clauses BSD license
  */
 (function($) {
 
@@ -1205,7 +1205,7 @@ window.elFinder = function(node, opts) {
 	 */
 	this.unbind = function(event, callback) {
 		var l = listeners[('' + event).toLowerCase()] || [],
-			i = l.indexOf(callback);
+			i = $.inArray(callback, l);
 
 		i > -1 && l.splice(i, 1);
 		//delete callback; // need this?
@@ -1610,11 +1610,11 @@ window.elFinder = function(node, opts) {
 		.bind('search', function(e) {
 			cache(e.data.files);
 		})
-//		.bind('rm', function(e) {
-//			var play  = beeper.canPlayType && beeper.canPlayType('audio/wav; codecs="1"');
-//
-//			play && play != '' && play != 'no' && $(beeper).html('<source src="./sounds/rm.wav" type="audio/wav">')[0].play()
-//		})
+		// .bind('rm', function(e) {
+		// 	var play  = beeper.canPlayType && beeper.canPlayType('audio/wav; codecs="1"');
+		//
+		// 	play && play != '' && play != 'no' && $(beeper).html('<source src="./sounds/rm.wav" type="audio/wav">')[0].play()
+		// })
 
 		;
 
@@ -3023,7 +3023,7 @@ elFinder.prototype = {
  *
  * @type String
  **/
-elFinder.prototype.version = '2.0.5';
+elFinder.prototype.version = '2.0.9';
 
 
 
