@@ -1,4 +1,4 @@
-elFinder 2.x integration for Yii 1.1
+elFinder 2.0 integration for Yii 1.1
 ====================================
 
 Based on https://bitbucket.org/z_bodya/yii-elfinder with updated [elFinder](https://github.com/Studio-42/elFinder) and some code improvements.

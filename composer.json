@@ -1,7 +1,12 @@
 {
 	"name": "rob006/yii-elfinder2",
 	"description": "Extension to use elFinder 2.0 file manager in yii application",
-	"keywords": ["widget", "tinymce", "file manager", "elFinder"],
+	"keywords": [
+		"widget",
+		"tinymce",
+		"file manager",
+		"elFinder"
+	],
 	"type": "yii-extension",
 	"support": {
 		"issues": "https://github.com/rob006/yii-elfinder2/issues",
@@ -21,6 +26,9 @@
 	],
 	"require": {
 		"yiisoft/yii": "~1.1.18"
+	},
+	"replace": {
+		"studio-42/elfinder": "2.0.9"
 	},
 	"autoload": {
 		"classmap": [
