@@ -50,7 +50,7 @@ class TinyMceElFinderPopupAction extends CAction {
 		}
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array(
+		$this->controller->render(__DIR__ . '/views.TinyMceElFinderPopupAction', array(
 			'title' => $this->title, 'settings' => $this->settings));
 	}
 

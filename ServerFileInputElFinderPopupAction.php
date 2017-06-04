@@ -54,7 +54,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		}
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array(
+		$this->controller->render(__DIR__ . '/views/ServerFileInputElFinderPopupAction', array(
 			'title' => $this->title, 'settings' => $this->settings, 'fieldId' => $_GET['fieldId']));
 	}
 
