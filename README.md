@@ -4,7 +4,7 @@ elFinder 2.0 Yii extension
 Based on https://bitbucket.org/z_bodya/yii-elfinder with updated [elFinder](https://github.com/Studio-42/elFinder) and some code improvements
 
 How to use
---------------------------
+----------
 
 0. Checkout source code to your project to ext.elFinder.
 	You can use custom elFinder code, just set `elFindervendor` alias to point your elFinder code directory.
@@ -95,7 +95,7 @@ How to use
 	));
 	```
 
-4. TinyMceElFinder - use this widget to integrate elFinder with [yii-tinymce](https://bitbucket.org/z_bodya/yii-tinymce)
+4. TinyMceElFinder - use this widget to integrate elFinder with [yii-tinymce](https://github.com/rob006/yii-tinymce)
 
 	```php
 	$this->widget('ext.tinymce.TinyMce', array(

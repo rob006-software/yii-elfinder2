@@ -1,10 +1,12 @@
 {
 	"name": "rob006/yii-elfinder2",
-	"version": "1.0.3",
 	"description": "Extension to use elFinder 2.0 file manager in yii application",
 	"keywords": ["widget", "tinymce", "file manager", "elFinder"],
-	"homepage": "https://github.com/rob006/yii-elfinder2",
 	"type": "yii-extension",
+	"support": {
+		"issues": "https://github.com/rob006/yii-elfinder2/issues",
+		"source": "https://github.com/rob006/yii-elfinder2"
+	},
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
@@ -16,5 +18,21 @@
 			"name": "Bogdan Savluk",
 			"email": "savluk.bogdan@gmail.com"
 		}
-	]
+	],
+	"require": {
+		"yiisoft/yii": "~1.1.18"
+	},
+	"autoload": {
+		"classmap": [
+			"."
+		]
+	},
+	"suggest": {
+		"rob006/yii-tinymce": "Provides WYSIWYG editor integration."
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.1-dev"
+		}
+	}
 }
