@@ -34,6 +34,7 @@ class TinyMceElFinderPopupAction extends CAction {
 
 	public function run() {
 		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		ElFinderHelper::registerAlias();
 		ElFinderHelper::registerAssets();
 
 		// set required options
@@ -51,7 +52,7 @@ class TinyMceElFinderPopupAction extends CAction {
 		}
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.TinyMceElFinderPopupAction', array(
+		$this->controller->render('elFinder.views.TinyMceElFinderPopupAction', array(
 			'title' => $this->title, 'settings' => $this->settings));
 	}
 

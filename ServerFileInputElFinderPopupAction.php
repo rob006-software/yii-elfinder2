@@ -34,6 +34,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 
 	public function run() {
 		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		ElFinderHelper::registerAlias();
 		ElFinderHelper::registerAssets();
 
 		if (empty($_GET['fieldId']) || !preg_match('/[a-z0-9\-_]/i', $_GET['fieldId'])) {
@@ -55,7 +56,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		}
 
 		$this->controller->layout = false;
-		$this->controller->render('ext.elFinder.views.ServerFileInputElFinderPopupAction', array(
+		$this->controller->render('elFinder.views.ServerFileInputElFinderPopupAction', array(
 			'title' => $this->title, 'settings' => $this->settings, 'fieldId' => $_GET['fieldId']));
 	}
 
