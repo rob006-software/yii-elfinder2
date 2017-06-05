@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.3 (under development)
+-------------------------
+
+- No changes have been made.
+
 
 1.1.2 (2017-06-04)
 ------------------
