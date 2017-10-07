@@ -8,9 +8,10 @@
 		"elFinder"
 	],
 	"type": "yii-extension",
+	"homepage": "https://github.com/rob006-software/yii-elfinder2",
 	"support": {
-		"issues": "https://github.com/rob006/yii-elfinder2/issues",
-		"source": "https://github.com/rob006/yii-elfinder2"
+		"issues": "https://github.com/rob006-software/yii-elfinder2/issues",
+		"source": "https://github.com/rob006-software/yii-elfinder2"
 	},
 	"license": "BSD-3-Clause",
 	"authors": [
