@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+
+1.1.4 (under development)
+-------------------------
+
+- No changes have been made.
+
+
 1.1.3 (2019-09-07)
 -------------------------
 
