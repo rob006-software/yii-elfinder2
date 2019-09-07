@@ -30,7 +30,7 @@ class ElFinderHelper extends CComponent {
 		'hu',
 		'id',
 		'it',
-		'jp',
+		'ja',
 		'ko',
 		'nl',
 		'no',
@@ -38,6 +38,7 @@ class ElFinderHelper extends CComponent {
 		'pt_BR',
 		'ro',
 		'ru',
+		'si',
 		'sk',
 		'sl',
 		'sr',
@@ -98,7 +99,11 @@ class ElFinderHelper extends CComponent {
 		}
 
 		// some css fixes
-		Yii::app()->clientScript->registerCss('elfinder-file-bg-fixer', '.elfinder-cwd-file,.elfinder-cwd-file .elfinder-cwd-file-wrapper,.elfinder-cwd-file .elfinder-cwd-filename{background-image:none !important;}');
+		Yii::app()->clientScript->registerCss(
+			'elfinder-file-bg-fixer',
+			'.elfinder-cwd-file,.elfinder-cwd-file .elfinder-cwd-file-wrapper,.elfinder-cwd-file .elfinder-cwd-filename{background-image:none !important;}'
+			.'.elfinder-resize-preview{max-width: 50%}'
+		);
 	}
 
 	/**

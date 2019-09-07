@@ -1,10 +1,10 @@
 CHANGELOG
 =========
 
-1.1.3 (under development)
+1.1.3 (2019-09-07)
 -------------------------
 
-- No changes have been made.
+- Update elFinder to 2.1.50.
 
 
 1.1.2 (2017-06-04)
