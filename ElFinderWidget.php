@@ -12,24 +12,18 @@ class ElFinderWidget extends CWidget {
 
 	/**
 	 * Client settings.
+	 *
 	 * @see https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
 	 * @var array
 	 */
-	public $settings = array();
-
-	/**
-	 *
-	 * @var string
-	 */
+	public $settings = [];
+	/** @var string */
 	public $connectorRoute = false;
-
-	/**
-	 * @var array
-	 */
-	public $connectorParams = array();
+	/** @var array */
+	public $connectorParams = [];
 
 	public function run() {
-		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		require_once __DIR__ . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
 		// set required options
@@ -40,16 +34,15 @@ class ElFinderWidget extends CWidget {
 		$this->settings['lang'] = Yii::app()->language;
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
-			$this->settings['customData'] = array(
+			$this->settings['customData'] = [
 				Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
-			);
+			];
 		}
 
 		$id = $this->getId();
 		$settings = CJavaScript::encode($this->settings);
 		$cs = Yii::app()->getClientScript();
 		$cs->registerScript("elFinder#$id", "$('#$id').elfinder($settings);");
-		echo CHtml::tag('div', array('id' => $id), '');
+		echo CHtml::tag('div', ['id' => $id], '');
 	}
-
 }

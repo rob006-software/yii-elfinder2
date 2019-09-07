@@ -10,37 +10,33 @@
  */
 class ServerFileInput extends CInputWidget {
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $popupConnectorRoute = false;
-
-	/**
-	 * @var array
-	 */
-	public $popupConnectorParams = array();
-
-	/**
-	 * @var string
-	 */
+	/** @var array */
+	public $popupConnectorParams = [];
+	/** @var string */
 	public $popupTitle = 'Files';
-
 	/**
-	 * HTML options for rendered input field
+	 * HTML options for rendered input field.
+	 *
 	 * @var array
 	 */
-	public $inputHtmlOptions = array();
-
+	public $inputHtmlOptions = [];
 	/**
-	 * Custom "Browse" button html code
-	 * Button id must be according with the pattern [INPUT_FIELD_ID]browse, for exaple:
-	 * CHtml::button('Browse', array('id' => TbHtml::getIdByName(TbHtml::activeName($model, 'header_box_image')) . 'browse'));
+	 * Custom "Browse" button HTML code.
+	 *
+	 * Button ID must be according with the pattern [INPUT_FIELD_ID]browse, for example:
+	 *
+	 * ```php
+	 * CHtml::button('Browse', ['id' => CHtml::getIdByName(CHtml::activeName($model, 'header_box_image')) . 'browse']);
+	 * ```
+	 *
 	 * @var string
 	 */
 	public $customButton = '';
 
 	public function run() {
-		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		require_once __DIR__ . '/ElFinderHelper.php';
 		ElFinderHelper::registerAssets();
 
 		if (empty($this->popupConnectorRoute)) {
@@ -67,7 +63,7 @@ class ServerFileInput extends CInputWidget {
 		echo CHtml::openTag('div', $contHtmlOptions);
 
 		// render input
-		$inputOptions = array_merge(array('style' => 'float:left;'), $this->inputHtmlOptions, array('id' => $id));
+		$inputOptions = array_merge(['style' => 'float:left;'], $this->inputHtmlOptions, ['id' => $id]);
 		if ($this->hasModel()) {
 			echo CHtml::activeTextField($this->model, $this->attribute, $inputOptions);
 		} else {
@@ -78,35 +74,36 @@ class ServerFileInput extends CInputWidget {
 		if (!empty($this->customButton)) {
 			echo $this->customButton;
 		} else {
-			echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn'));
+			echo CHtml::button('Browse', ['id' => $id . 'browse', 'class' => 'btn']);
 		}
 
 		// close container
 		echo CHtml::closeTag('div');
 
-		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array_merge(array('fieldId' => $id), $this->popupConnectorParams));
-		$iframe = CHtml::tag('iframe', array(
-					'frameborder' => 0,
-					'width' => '100%',
-					'height' => '100%',
-					'src' => $url,
-						), '');
-		echo CHtml::tag('div', array(
+		$url = Yii::app()->controller->createUrl($this->popupConnectorRoute, array_merge(['fieldId' => $id], $this->popupConnectorParams));
+		$iframe = CHtml::tag('iframe', [
+			'frameborder' => 0,
+			'width' => '100%',
+			'height' => '100%',
+			'src' => $url,
+		], '');
+		echo CHtml::tag('div', [
 			'id' => $id . '-dialog',
 			'style' => 'display:none;',
 			'title' => $this->popupTitle,
-				), $iframe);
+		], $iframe);
 
 		$js = '
-$("#' . $id . 'browse").click(function(){ $(function() {
-	$("#' . $id . '-dialog" ).dialog({
-		title: ' . CJSON::encode($this->popupTitle) . ',
-		width: 900,
-		height: 550,
+$("#' . $id . 'browse").click(function(){ 
+	$(function() {
+		$("#' . $id . '-dialog" ).dialog({
+			title: ' . CJSON::encode($this->popupTitle) . ',
+			width: 900,
+			height: 550,
+		});
 	});
-});});';
+});';
 
 		Yii::app()->getClientScript()->registerScript('ServerFileInput#' . $id, $js);
 	}
-
 }

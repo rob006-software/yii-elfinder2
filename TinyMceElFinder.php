@@ -1,10 +1,10 @@
 <?php
 
-require_once dirname(__FILE__) . '/ElFinderHelper.php';
+require_once __DIR__ . '/ElFinderHelper.php';
 ElFinderHelper::importTinyMceFileManager();
 
 /**
- * elFnder file manager for TinyMCE
+ * elFinder file manager for TinyMCE
  *
  * @author Robert Korulczyk <robert@korulczyk.pl>
  * @link http://rob006.net/
@@ -13,15 +13,10 @@ ElFinderHelper::importTinyMceFileManager();
  */
 class TinyMceElFinder extends TinyMceFileManager {
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $popupConnectorRoute = false;
-
-	/**
-	 * @var array
-	 */
-	public $popupConnectorParams = array();
+	/** @var array */
+	public $popupConnectorParams = [];
 
 	/**
 	 * @var string
@@ -53,5 +48,4 @@ function (field_name, url, type, win) {
 JS;
 		return 'js:' . $script;
 	}
-
 }

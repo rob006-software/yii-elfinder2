@@ -9,31 +9,26 @@
  */
 class TinyMceElFinderPopupAction extends CAction {
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $connectorRoute = false;
-
+	/** @var array */
+	public $connectorParams = [];
 	/**
-	 * @var array
-	 */
-	public $connectorParams = array();
-
-	/**
-	 * Popup title
+	 * Popup title.
+	 *
 	 * @var string
 	 */
 	public $title = 'Files';
-
 	/**
 	 * Client settings.
+	 *
 	 * @see https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
 	 * @var array
 	 */
-	public $settings = array();
+	public $settings = [];
 
 	public function run() {
-		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		require_once __DIR__ . '/ElFinderHelper.php';
 		ElFinderHelper::registerAlias();
 		ElFinderHelper::registerAssets();
 
@@ -46,14 +41,15 @@ class TinyMceElFinderPopupAction extends CAction {
 		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
-			$this->settings['customData'] = array(
+			$this->settings['customData'] = [
 				Yii::app()->request->csrfTokenName => Yii::app()->request->csrfToken,
-			);
+			];
 		}
 
 		$this->controller->layout = false;
-		$this->controller->render('elFinder.views.TinyMceElFinderPopupAction', array(
-			'title' => $this->title, 'settings' => $this->settings));
+		$this->controller->render('elFinder.views.TinyMceElFinderPopupAction', [
+			'title' => $this->title,
+			'settings' => $this->settings,
+		]);
 	}
-
 }

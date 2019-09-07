@@ -11,10 +11,11 @@ class ElFinderHelper extends CComponent {
 
 	/**
 	 * Available elFinder translations.
+	 *
 	 * @see directory: vendor/assets/js/i18n
 	 * @var array
 	 */
-	public static $availableLanguages = array(
+	public static $availableLanguages = [
 		'ar',
 		'bg',
 		'ca',
@@ -49,11 +50,8 @@ class ElFinderHelper extends CComponent {
 		'vi',
 		'zh_CN',
 		'zh_TW',
-	);
-
-	/**
-	 * @var string
-	 */
+	];
+	/** @var string */
 	private static $_assetsDir;
 
 	/**
@@ -84,10 +82,10 @@ class ElFinderHelper extends CComponent {
 
 		// elFinder translation
 		$lang = Yii::app()->language;
-		if (!in_array($lang, self::$availableLanguages)) {
+		if (!in_array($lang, self::$availableLanguages, true)) {
 			if (strpos($lang, '_')) {
 				$lang = substr($lang, 0, strpos($lang, '_'));
-				if (!in_array($lang, self::$availableLanguages)) {
+				if (!in_array($lang, self::$availableLanguages, true)) {
 					$lang = false;
 				}
 			} else {
@@ -102,7 +100,7 @@ class ElFinderHelper extends CComponent {
 		Yii::app()->clientScript->registerCss(
 			'elfinder-file-bg-fixer',
 			'.elfinder-cwd-file,.elfinder-cwd-file .elfinder-cwd-file-wrapper,.elfinder-cwd-file .elfinder-cwd-filename{background-image:none !important;}'
-			.'.elfinder-resize-preview{max-width: 50%}'
+			. '.elfinder-resize-preview{max-width: 50%}'
 		);
 	}
 
@@ -111,7 +109,7 @@ class ElFinderHelper extends CComponent {
 	 */
 	public static function registerAlias() {
 		if (!Yii::getPathOfAlias('elFinder')) {
-			Yii::setPathOfAlias('elFinder', dirname(__FILE__));
+			Yii::setPathOfAlias('elFinder', __DIR__);
 		}
 		if (!Yii::getPathOfAlias('elFindervendor')) {
 			Yii::setPathOfAlias('elFindervendor', Yii::getPathOfAlias('elFinder.vendor'));
@@ -120,6 +118,7 @@ class ElFinderHelper extends CComponent {
 
 	/**
 	 * Register assets directory and return assets url path.
+	 *
 	 * @return string
 	 */
 	public static function getAssetsDir() {

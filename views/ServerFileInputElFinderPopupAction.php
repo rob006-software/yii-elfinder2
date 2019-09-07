@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title><?php echo TbHtml::encode($title); ?></title>
+		<title><?= CHtml::encode($title) ?></title>
 
 		<script type="text/javascript">
 			var FileBrowserDialogue = {
@@ -10,13 +10,13 @@
 					// Here goes your code for setting your custom things onLoad.
 				},
 				mySubmit: function(URL) {
-					self.parent.$('#<?php echo $fieldId; ?>').val(URL).change();
-					self.parent.$('#<?php echo $fieldId; ?>-dialog').dialog('close');
+					self.parent.$('#<?= $fieldId ?>').val(URL).change();
+					self.parent.$('#<?= $fieldId ?>-dialog').dialog('close');
 				}
 			}
 
 			$().ready(function() {
-				var elfSettings = <?php echo CJSON::encode($settings); ?>;
+				var elfSettings = <?= CJSON::encode($settings) ?>;
 				elfSettings["getFileCallback"] = function(file) { // editor callback
 					FileBrowserDialogue.mySubmit(file.url); // pass selected file path to field
 				};

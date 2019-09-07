@@ -11,26 +11,27 @@
 class ElFinderConnectorAction extends CAction {
 
 	/**
-	 * Connector configuration
+	 * Connector configuration.
+	 *
 	 * @see https://github.com/Studio-42/elFinder/wiki/Connector-configuration-options
 	 * @var array
 	 */
-	public $settings = array();
+	public $settings = [];
 
 	public function run() {
-		require_once dirname(__FILE__) . '/ElFinderHelper.php';
+		require_once __DIR__ . '/ElFinderHelper.php';
 		$assetsDir = ElFinderHelper::getAssetsDir();
+		// @todo seems to be unused?
 		define('ELFINDER_IMG_PARENT_URL', $assetsDir);
 
 		Yii::import('elFindervendor.php.elFinderSession');
 		Yii::import('elFindervendor.php.elFinderSessionInterface');
 
-		$php_path = Yii::getPathOfAlias('elFindervendor.php');
-		require_once($php_path . '/autoload.php');
+		$phpPath = Yii::getPathOfAlias('elFindervendor.php');
+		require_once $phpPath . '/autoload.php';
 
-		header("Content-Type: application/json");
+		header('Content-Type: application/json');
 		$fm = new elFinderConnector(new elFinder($this->settings));
 		$fm->run();
 	}
-
 }

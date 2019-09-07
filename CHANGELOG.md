@@ -5,6 +5,7 @@ CHANGELOG
 -------------------------
 
 - Update elFinder to 2.1.50.
+- Bump required PHP version to 5.4.
 
 
 1.1.2 (2017-06-04)
