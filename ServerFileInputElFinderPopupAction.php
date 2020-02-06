@@ -42,6 +42,7 @@ class ServerFileInputElFinderPopupAction extends CAction {
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
+		$this->settings['baseUrl'] = ElFinderHelper::getAssetsDir() . '/';
 		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
