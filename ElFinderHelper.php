@@ -27,6 +27,7 @@ class ElFinderHelper extends CComponent {
 		'fa',
 		'fo',
 		'fr',
+		'fr_CA',
 		'he',
 		'hu',
 		'id',
