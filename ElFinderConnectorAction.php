@@ -20,14 +20,13 @@ class ElFinderConnectorAction extends CAction {
 
 	public function run() {
 		require_once __DIR__ . '/ElFinderHelper.php';
-		$assetsDir = ElFinderHelper::getAssetsDir();
-		// @todo seems to be unused?
-		define('ELFINDER_IMG_PARENT_URL', $assetsDir);
+		ElFinderHelper::registerAssets();
 
 		Yii::import('elFindervendor.php.elFinderSession');
 		Yii::import('elFindervendor.php.elFinderSessionInterface');
 
 		$phpPath = Yii::getPathOfAlias('elFindervendor.php');
+		/* @noinspection PhpIncludeInspection */
 		require_once $phpPath . '/autoload.php';
 
 		header('Content-Type: application/json');

@@ -29,6 +29,9 @@
 		"php": "^5.4 || ^7.0",
 		"yiisoft/yii": "~1.1.18"
 	},
+	"require-dev": {
+		"rob006/yii-tinymce": "^1.0"
+	},
 	"replace": {
 		"studio-42/elfinder": "2.1.50"
 	},

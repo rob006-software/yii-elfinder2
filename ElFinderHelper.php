@@ -135,6 +135,7 @@ class ElFinderHelper extends CComponent {
 	 * Try import TinyMceFileManager class.
 	 */
 	public static function importTinyMceFileManager() {
+		/* @noinspection MissingOrEmptyGroupStatementInspection */
 		if (@class_exists('TinyMceFileManager')) {
 			// class already imported or declared
 		} elseif (Yii::getPathOfAlias('tinymce')) {
@@ -145,5 +146,4 @@ class ElFinderHelper extends CComponent {
 			Yii::import('ext.tinymce.TinyMceFileManager');
 		}
 	}
-
 }

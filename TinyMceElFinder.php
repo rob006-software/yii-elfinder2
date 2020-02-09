@@ -18,9 +18,7 @@ class TinyMceElFinder extends TinyMceFileManager {
 	/** @var array */
 	public $popupConnectorParams = [];
 
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	public $popupTitle = 'Files';
 
 	public function getFileBrowserCallback() {
@@ -30,19 +28,23 @@ class TinyMceElFinder extends TinyMceFileManager {
 		$connectorUrl = CJSON::encode(Yii::app()->controller->createUrl($this->popupConnectorRoute, $this->popupConnectorParams));
 		$title = CJSON::encode($this->popupTitle);
 
+		/* @noinspection ALL */
 		$script = <<<JS
 function (field_name, url, type, win) {
-	tinymce.activeEditor.windowManager.open({
-		file: $connectorUrl,
-		title: $title,
-		width: 900,
-		height: 450,
-		resizable: "yes"
-	}, {
-		setUrl: function(url) {
-			win.document.getElementById(field_name).value = url;
+	tinymce.activeEditor.windowManager.open(
+		{
+			file: $connectorUrl,
+			title: $title,
+			width: 900,
+			height: 450,
+			resizable: "yes"
+		}, 
+		{
+			setUrl: function(url) {
+				win.document.getElementById(field_name).value = url;
+			}
 		}
-	});
+	);
 	return false;
 }
 JS;
