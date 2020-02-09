@@ -35,10 +35,16 @@
 	"autoload": {
 		"classmap": [
 			"."
+		],
+		"exclude-from-classmap": [
+			"/composer-vendor/"
 		]
 	},
 	"suggest": {
 		"rob006/yii-tinymce": "Provides WYSIWYG editor integration."
+	},
+	"config": {
+		"vendor-dir": "composer-vendor"
 	},
 	"extra": {
 		"branch-alias": {
