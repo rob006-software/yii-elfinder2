@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Action creates content for TinyMCE popup window with elFinder widget
+ * Action creates content for TinyMCE popup window with elFinder widget.
  *
  * @author Robert Korulczyk <robert@korulczyk.pl>
- * @link http://rob006.net/
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
 class TinyMceElFinderPopupAction extends ElFinderPopupAction {

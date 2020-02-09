@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Helper class for elFinder widgets
+ * Helper class for elFinder widgets.
  *
  * @author Robert Korulczyk <robert@korulczyk.pl>
- * @link http://rob006.net/
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
 class ElFinderHelper extends CComponent {

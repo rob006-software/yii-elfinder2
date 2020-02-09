@@ -1,10 +1,9 @@
 <?php
 
 /**
- * elFinder connector
+ * elFinder connector.
  *
  * @author Robert Korulczyk <robert@korulczyk.pl>
- * @link http://rob006.net/
  * @author Bogdan Savluk <Savluk.Bogdan@gmail.com>
  * @license http://opensource.org/licenses/BSD-3-Clause
  */

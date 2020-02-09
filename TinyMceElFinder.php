@@ -4,10 +4,9 @@ require_once __DIR__ . '/ElFinderHelper.php';
 ElFinderHelper::importTinyMceFileManager();
 
 /**
- * elFinder file manager for TinyMCE
+ * elFinder file manager for TinyMCE.
  *
  * @author Robert Korulczyk <robert@korulczyk.pl>
- * @link http://rob006.net/
  * @author Bogdan Savluk <Savluk.Bogdan@gmail.com>
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
