@@ -2,14 +2,14 @@ CHANGELOG
 =========
 
 
-1.1.4 (under development)
--------------------------
+1.1.4 (2020-02-09)
+------------------
 
-- No changes have been made.
-
+- Update elFinder to 2.1.53.
+- Explicitly configure `baseUrl` to prevent 404 errors for `css/theme.css`.
 
 1.1.3 (2019-09-07)
--------------------------
+------------------
 
 - Update elFinder to 2.1.50.
 - Bump required PHP version to 5.4.
