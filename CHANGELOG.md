@@ -2,16 +2,25 @@ CHANGELOG
 =========
 
 
+1.1.6 (2022-05-16)
+------------------
+
+- Improve loading translations files.
+- Update elFinder to 2.1.61.
+
+
 1.1.5 (2021-06-19)
 ------------------
 
 - Update elFinder to 2.1.59.
+
 
 1.1.4 (2020-02-09)
 ------------------
 
 - Update elFinder to 2.1.53.
 - Explicitly configure `baseUrl` to prevent 404 errors for `css/theme.css`.
+
 
 1.1.3 (2019-09-07)
 ------------------
