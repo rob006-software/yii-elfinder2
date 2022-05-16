@@ -80,22 +80,6 @@ class ElFinderHelper extends CComponent {
 			$cs->registerScriptFile($assetsDir . '/js/elfinder.min.js');
 		}
 
-		// elFinder translation
-		$lang = Yii::app()->language;
-		if (!in_array($lang, self::$availableLanguages, true)) {
-			if (strpos($lang, '_')) {
-				$lang = substr($lang, 0, strpos($lang, '_'));
-				if (!in_array($lang, self::$availableLanguages, true)) {
-					$lang = false;
-				}
-			} else {
-				$lang = false;
-			}
-		}
-		if ($lang !== false) {
-			$cs->registerScriptFile($assetsDir . '/js/i18n/elfinder.' . $lang . '.js');
-		}
-
 		// some css fixes
 		Yii::app()->clientScript->registerCss(
 			'elfinder-file-bg-fixer',
@@ -145,5 +129,21 @@ class ElFinderHelper extends CComponent {
 			// try import by default extension directory
 			Yii::import('ext.tinymce.TinyMceFileManager');
 		}
+	}
+
+	public static function getLanguage() {
+		$lang = Yii::app()->language;
+		if (!in_array($lang, self::$availableLanguages, true)) {
+			if (strpos($lang, '_')) {
+				$lang = substr($lang, 0, strpos($lang, '_'));
+				if (!in_array($lang, self::$availableLanguages, true)) {
+					$lang = 'en';
+				}
+			} else {
+				$lang = 'en';
+			}
+		}
+
+		return $lang;
 	}
 }

@@ -38,7 +38,7 @@ abstract class ElFinderPopupAction extends CAction {
 			throw new CException('$connectorRoute must be set!');
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
-		$this->settings['lang'] = Yii::app()->language;
+		$this->settings['lang'] = ElFinderHelper::getLanguage();
 		$this->settings['baseUrl'] = ElFinderHelper::getAssetsDir() . '/';
 		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
 

@@ -30,7 +30,7 @@ class ElFinderWidget extends CWidget {
 			throw new CException('$connectorRoute must be set!');
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
-		$this->settings['lang'] = Yii::app()->language;
+		$this->settings['lang'] = ElFinderHelper::getLanguage();
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
 			$this->settings['customData'] = [
