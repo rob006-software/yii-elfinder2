@@ -30,7 +30,7 @@
 		"yiisoft/yii": "~1.1.18"
 	},
 	"require-dev": {
-		"rob006/yii-tinymce": "^1.0"
+		"rob006/yii-tinymce": "^1.0 | ^2.0"
 	},
 	"replace": {
 		"studio-42/elfinder": "2.1.64"

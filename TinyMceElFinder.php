@@ -27,8 +27,28 @@ class TinyMceElFinder extends TinyMceFileManager {
 		$connectorUrl = CJSON::encode(Yii::app()->controller->createUrl($this->popupConnectorRoute, $this->popupConnectorParams));
 		$title = CJSON::encode($this->popupTitle);
 
-		/* @noinspection ALL */
-		$script = <<<JS
+		$tinymceVersion = 4;
+		if (method_exists($this, 'getTinymceVersion')) {
+			$tinymceVersion = $this->getTinymceVersion();
+		}
+		if ($tinymceVersion === 6) {
+			/* @noinspection ALL */
+			$script = <<<JS
+function (callback, value, meta) {
+	window.tinymceImageUploadCallback = callback;
+	tinymce.activeEditor.windowManager.openUrl({
+		url: $connectorUrl,
+		title: $title,
+		width: 900,
+		height: 450,
+		resizable: "yes"
+	});
+	return false;
+}
+JS;
+		} else {
+			/* @noinspection ALL */
+			$script = <<<JS
 function (field_name, url, type, win) {
 	tinymce.activeEditor.windowManager.open(
 		{
@@ -44,9 +64,10 @@ function (field_name, url, type, win) {
 			}
 		}
 	);
-	return false;
+	window.tinymceImageUploadCallback = tinymce.activeEditor.windowManager.getParams().setUrl;
 }
 JS;
+		}
 		return 'js:' . $script;
 	}
 }

@@ -1,3 +1,10 @@
+<?php
+
+/* @var $settings array */
+/* @var $title string */
+/* @var $fieldId string */
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>

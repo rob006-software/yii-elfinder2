@@ -1,3 +1,9 @@
+<?php
+
+/* @var $settings array */
+/* @var $title string */
+
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +17,7 @@
 				},
 				mySubmit: function(URL) {
 					// pass selected file path to TinyMCE
-					parent.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
+					parent.tinymceImageUploadCallback(URL);
 
 					// close popup window
 					parent.tinymce.activeEditor.windowManager.close();
