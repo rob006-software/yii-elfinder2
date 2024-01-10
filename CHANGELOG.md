@@ -2,6 +2,13 @@ CHANGELOG
 =========
 
 
+1.1.7 (2024-01-10)
+------------------
+
+- Update elFinder to 2.1.64.
+- Prepare for upcoming changes in `rob006/yii-tinymce` (support integration with TinyMCE 6.x).
+
+
 1.1.6 (2022-05-16)
 ------------------
 
