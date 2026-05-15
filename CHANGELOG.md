@@ -2,6 +2,12 @@ CHANGELOG
 =========
 
 
+1.1.8 (xxxx-xx-xx)
+------------------
+
+- Add support for TinyMCE 8.x in `rob006/yii-tinymce`.
+
+
 1.1.7 (2024-01-10)
 ------------------
 

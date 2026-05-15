@@ -31,7 +31,21 @@ class TinyMceElFinder extends TinyMceFileManager {
 		if (method_exists($this, 'getTinymceVersion')) {
 			$tinymceVersion = $this->getTinymceVersion();
 		}
-		if ($tinymceVersion === 6) {
+		if ($tinymceVersion === 8) {
+			/* @noinspection ALL */
+			$script = <<<JS
+function (callback, value, meta) {
+	window.tinymceImageUploadCallback = callback;
+	tinymce.activeEditor.windowManager.openUrl({
+		url: $connectorUrl,
+		title: $title,
+		width: 900,
+		height: 450,
+	});
+	return false;
+}
+JS;
+		} elseif ($tinymceVersion === 6) {
 			/* @noinspection ALL */
 			$script = <<<JS
 function (callback, value, meta) {
