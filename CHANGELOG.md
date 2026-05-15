@@ -6,6 +6,7 @@ CHANGELOG
 ------------------
 
 - Add support for TinyMCE 8.x in `rob006/yii-tinymce`.
+- Update elFinder to 2.1.69.
 
 
 1.1.7 (2024-01-10)
