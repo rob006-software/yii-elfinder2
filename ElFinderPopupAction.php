@@ -39,6 +39,8 @@ abstract class ElFinderPopupAction extends CAction {
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = ElFinderHelper::getLanguage();
+		// commands which change files are accepted only by POST - see `ElFinderConnectorAction::$getCommands`
+		$this->settings['requestType'] = 'post';
 		$this->settings['baseUrl'] = ElFinderHelper::getAssetsDir() . '/';
 		$this->settings['soundPath'] = ElFinderHelper::getAssetsDir() . '/sounds/';
 

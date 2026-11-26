@@ -2,6 +2,17 @@ CHANGELOG
 =========
 
 
+1.1.10 (2026-11-26)
+-------------------
+
+- Fix CSRF vulnerability: the client sent all commands by GET, which is not covered by CSRF validation of Yii, so a link
+  opened by a logged-in user could delete, rename or overwrite files. The client now uses POST requests
+  (`requestType` setting) and `ElFinderConnectorAction` rejects commands which change files when they are sent by GET
+  (see `ElFinderConnectorAction::$getCommands`).
+  **If you use your own client configuration** (not `ElFinderWidget` or the popup actions of this extension), set
+  `requestType: 'post'` and send the CSRF token in `customData`.
+
+
 1.1.9 (2026-10-21)
 ------------------
 
