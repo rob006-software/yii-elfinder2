@@ -33,7 +33,7 @@
 		"rob006/yii-tinymce": "^1.0 || ^2.0 || ^3.0"
 	},
 	"replace": {
-		"studio-42/elfinder": "2.1.69"
+		"studio-42/elfinder": "2.1.70"
 	},
 	"autoload": {
 		"classmap": [
