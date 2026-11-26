@@ -43,6 +43,8 @@ class TinyMceElFinderPopupAction extends CAction {
 		}
 		$this->settings['url'] = $this->controller->createUrl($this->connectorRoute, $this->connectorParams);
 		$this->settings['lang'] = Yii::app()->language;
+		// commands which change files are accepted only by POST - see `ElFinderConnectorAction::$getCommands`
+		$this->settings['requestType'] = 'post';
 
 		if (Yii::app()->getRequest()->enableCsrfValidation) {
 			$this->settings['customData'] = array(
